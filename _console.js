@@ -1,5 +1,21 @@
-function _console(){}
+function _console(){};
+
 _console.prototype.consoleExists = typeof(console) == "undefined"? false: true;
+_console.prototype.histLog = {};
+_console.prototype.logCount = 0;
+_console.prototype.history = function(consoleInput)
+{
+	if(arguments.length > 0)
+	{
+		this.histLog[this.logCount] = consoleInput;
+		this.logCount++;
+		
+	}
+	else
+	{
+		console.log(this.histLog);
+	}
+}
  
 _console.prototype.log = function()
 {	
@@ -14,6 +30,7 @@ _console.prototype.log = function()
 			if(typeof(variable) == "string")
 			{
 			console.log('String: "' + variable + '" (' + variable.length + ')');
+			this.history(arguments);
 			}
 			else if(typeof(variable) == "number")
 			{
@@ -58,3 +75,4 @@ _console.prototype.info = function()
 	//TODO:Add info features
 	console.log('info');
 }
+_console = new _console();
