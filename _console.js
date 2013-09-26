@@ -7,7 +7,15 @@ _console.prototype.history = function(consoleInput)
 {
 	if(arguments.length > 0)
 	{
-		this.histLog[this.logCount] = consoleInput;
+		var d = new Date()
+		if(typeof consoleInput[1] == "undefined")
+		{
+			this.histLog[this.logCount] = Array(consoleInput[0],d,d.getTime());
+		}
+		else
+		{
+			this.histLog[this.logCount] = Array(consoleInput,d,d.getTime());
+		}
 		this.logCount++;
 		
 	}
@@ -34,23 +42,28 @@ _console.prototype.log = function()
 			}
 			else if(typeof(variable) == "number")
 			{
-					console.log('Number: ' + variable + ' ' + (variable >>>0).toString(2) );
+				console.log('Number: ' + variable + ' ' + (variable >>>0).toString(2) );
+				this.history(arguments);
 			}
 			else if(typeof(variable) == "boolean")
 			{
 				console.log('Boolean:' + ' ' + variable);
+				this.history(arguments);
 			}
 			else if(typeof(variable) == "undefined")
 			{
 				console.log('Undefined: #');
+				this.history(arguments);
 			}
 			else if(typeof(variable) == "object")
 			{
 				console.log(variable);
+				this.history(arguments);
 			}
 			else if(typeof(variable) == "function")
 			{
 				console.log(variable);
+				this.history(arguments);
 			}
 			
 		}
