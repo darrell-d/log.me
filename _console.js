@@ -28,7 +28,7 @@ _console.prototype.saveHistory = function(consoleInput)
 _console.prototype.getHistory = function(start,stop)
 {
 	var argLength = arguments.length;
-	if(argLength = 0)
+	if(argLength == 0)
 	{
 		try
 		{
@@ -36,7 +36,7 @@ _console.prototype.getHistory = function(start,stop)
 		}
 		catch(e)
 		{
-			
+				
 		}
 	}
 	else if(argLength == 1)
@@ -111,7 +111,7 @@ _console.prototype.log = function()
 	}
 	else
 	{
-		//TODO:Save console output to memory
+		this.saveHistory(arugments);
 	}
 }
 _console.prototype.debug = function()
