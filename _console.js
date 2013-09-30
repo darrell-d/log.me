@@ -3,9 +3,10 @@ function _console(){};
 _console.prototype.consoleExists = typeof(console) == "undefined"? false: true;
 _console.prototype.histLog = {};
 _console.prototype.logCount = 0;
-_console.prototype.history = function(consoleInput)
+
+_console.prototype.saveHistory = function(consoleInput)
 {
-	if(arguments.length > 0)
+	try
 	{
 		var d = new Date()
 		if(typeof consoleInput[1] == "undefined")
@@ -17,11 +18,51 @@ _console.prototype.history = function(consoleInput)
 			this.histLog[this.logCount] = Array(consoleInput,d,d.getTime());
 		}
 		this.logCount++;
+	}
+	catch(e)
+	{
+		console.log(e);
+	}
+}
+
+_console.prototype.getHistory = function(start,stop)
+{
+	var argLength = arguments.length;
+	if(argLength = 0)
+	{
+		try
+		{
+			return this.histLog;
+		}
+		catch(e)
+		{
+			
+		}
+	}
+	else if(argLength == 1)
+	{
+		try
+		{
+			if(typeof arguments[0] == "Number")
+			{
+				return this.histLog[arguments[0]];
+			}
+			else
+			{
+				throw Error("Invalid argument type - Type Number required");
+			}
+		}
+		catch(e)
+		{
+			console.log(e);
+		}
 		
+	}
+	else if(argLength == 2)
+	{
 	}
 	else
 	{
-		console.log(this.histLog);
 	}
 }
  
@@ -38,32 +79,32 @@ _console.prototype.log = function()
 			if(typeof(variable) == "string")
 			{
 			console.log('String: "' + variable + '" (' + variable.length + ')');
-			this.history(arguments);
+			this.saveHistory(arguments);
 			}
 			else if(typeof(variable) == "number")
 			{
 				console.log('Number: ' + variable + ' ' + (variable >>>0).toString(2) );
-				this.history(arguments);
+				this.saveHistory(arguments);
 			}
 			else if(typeof(variable) == "boolean")
 			{
 				console.log('Boolean:' + ' ' + variable);
-				this.history(arguments);
+				this.saveHistory(arguments);
 			}
 			else if(typeof(variable) == "undefined")
 			{
 				console.log('Undefined: #');
-				this.history(arguments);
+				this.saveHistory(arguments);
 			}
 			else if(typeof(variable) == "object")
 			{
 				console.log(variable);
-				this.history(arguments);
+				this.saveHistory(arguments);
 			}
 			else if(typeof(variable) == "function")
 			{
 				console.log(variable);
-				this.history(arguments);
+				this.saveHistory(arguments);
 			}
 			
 		}
