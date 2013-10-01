@@ -3,6 +3,7 @@ function _console(){};
 _console.prototype.consoleExists = typeof(console) == "undefined"? false: true;
 _console.prototype.histLog = {};
 _console.prototype.logCount = 0;
+_console.prototype.verbose = true;
 
 _console.prototype.saveHistory = function(consoleInput)
 {
@@ -78,17 +79,17 @@ _console.prototype.log = function()
  
 			if(typeof(variable) == "string")
 			{
-			console.log('String: "' + variable + '" (' + variable.length + ')');
-			this.saveHistory(arguments);
+				console.log( (this.verbose)?'String: "' + variable + '" (' + variable.length + ')': variable);
+				this.saveHistory(arguments);
 			}
 			else if(typeof(variable) == "number")
 			{
-				console.log('Number: ' + variable + ' ' + (variable >>>0).toString(2) );
+				console.log((this.verbose)?'Number: ' + variable + ' ' + (variable >>>0).toString(2) );
 				this.saveHistory(arguments);
 			}
 			else if(typeof(variable) == "boolean")
 			{
-				console.log('Boolean:' + ' ' + variable);
+				console.log((this.verbose)?'Boolean:' + ' ' + variable);
 				this.saveHistory(arguments);
 			}
 			else if(typeof(variable) == "undefined")
