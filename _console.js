@@ -84,12 +84,12 @@ _console.prototype.log = function()
 			}
 			else if(typeof(variable) == "number")
 			{
-				console.log((this.verbose)?'Number: ' + variable + ' ' + (variable >>>0).toString(2) );
+				console.log((this.verbose)?'Number: ' + variable + ' ' + (variable >>>0).toString(2): variable );
 				this.saveHistory(arguments);
 			}
 			else if(typeof(variable) == "boolean")
 			{
-				console.log((this.verbose)?'Boolean:' + ' ' + variable);
+				console.log((this.verbose)?'Boolean:' + ' ' + variable : variable);
 				this.saveHistory(arguments);
 			}
 			else if(typeof(variable) == "undefined")
