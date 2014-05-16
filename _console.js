@@ -10,8 +10,10 @@ _console.prototype.saveHistory = function(consoleInput)
 	try
 	{
 		var d = new Date()
+		//Checks for array / Object input
 		if(typeof consoleInput[1] == "undefined")
 		{
+
 			this.histLog[this.logCount] = Array(consoleInput[0],d,d.getTime());
 		}
 		else
@@ -22,7 +24,7 @@ _console.prototype.saveHistory = function(consoleInput)
 	}
 	catch(e)
 	{
-		console.log(e);
+		this.log(e);
 	}
 }
 
@@ -99,12 +101,20 @@ _console.prototype.log = function()
 			}
 			else if(typeof(variable) == "object")
 			{
-				console.log(variable);
+				
+				if(variable instanceof Array)
+				{
+					console.log("Array("+ variable.length +") :: " , variable);
+				}
+				else
+				{
+					console.log("Object("+ Object.keys(variable).length +" keys) :: " , variable);
+				}
 				this.saveHistory(arguments);
 			}
 			else if(typeof(variable) == "function")
 			{
-				console.log(variable);
+				window.func = variable;
 				this.saveHistory(arguments);
 			}
 			
