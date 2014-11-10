@@ -37,7 +37,7 @@ _console.prototype.getHistory = function(start,stop)
 		}
 		catch(e)
 		{
-				
+
 		}
 	}
 	else if(argLength == 1)
@@ -57,7 +57,7 @@ _console.prototype.getHistory = function(start,stop)
 		{
 			console.log(e);
 		}
-		
+
 	}
 	else if(argLength == 2)
 	{
@@ -66,17 +66,17 @@ _console.prototype.getHistory = function(start,stop)
 	{
 	}
 }
- 
+
 _console.prototype.log = function()
-{	
+{
 	if(this.consoleExists)
 	{
 		size = arguments.length;
- 
+
 		for(i = 0; i < size; i++)
 		{
 			var variable = arguments[i];
- 
+
 			if(typeof(variable) == "string")
 			{
 				console.log( (this.verbose)?'String: "' + variable + '" (' + variable.length + ')': variable);
@@ -84,12 +84,12 @@ _console.prototype.log = function()
 			}
 			else if(typeof(variable) == "number")
 			{
-				console.log((this.verbose)?'Number: ' + variable + ' ' + (variable >>>0).toString(2) );
+				console.log((this.verbose)?'Number: ' + variable + ' ' + (variable >>>0).toString(2) : variable);
 				this.saveHistory(arguments);
 			}
 			else if(typeof(variable) == "boolean")
 			{
-				console.log((this.verbose)?'Boolean:' + ' ' + variable);
+				console.log((this.verbose)?'Boolean:' + ' ' + variable : variable );
 				this.saveHistory(arguments);
 			}
 			else if(typeof(variable) == "undefined")
@@ -107,7 +107,7 @@ _console.prototype.log = function()
 				console.log(variable);
 				this.saveHistory(arguments);
 			}
-			
+
 		}
 	}
 	else
