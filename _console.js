@@ -119,7 +119,7 @@ _console.prototype.log = function()
 			}
 			else if(typeof(variable) == "function")
 			{
-				window.func = variable;
+				console.log("function(): ",variable);
 				this.saveHistory(arguments);
 			}
 
