@@ -13,12 +13,11 @@ _console.prototype.saveHistory = function(consoleInput)
 		//Checks for array / Object input
 		if(typeof consoleInput[1] == "undefined")
 		{
-
-			this.histLog[this.logCount] = Array(consoleInput[0],d,d.getTime());
+			this.histLog[this.logCount] = {"output": consoleInput[0],"TimeStamp":d,"epochTime":d.getTime()};
 		}
 		else
 		{
-			this.histLog[this.logCount] = Array(consoleInput,d,d.getTime());
+			this.histLog[this.logCount] = {"output": consoleInput,"TimeStamp":d,"epochTime":d.getTime()};
 		}
 		this.logCount++;
 	}
