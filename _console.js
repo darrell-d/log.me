@@ -4,8 +4,8 @@ _console.prototype.consoleExists = typeof(console) == "undefined"? false: true;
 _console.prototype.histLog = {};
 _console.prototype.logCount = 0;
 _console.prototype.verbose = true;
-_console.prototype.safeURLs = Array("localhost","mysite.com");
-_console.prototype.currentURL = location.href.split('/')[0];
+_console.prototype.safeURLs = Array("localhost");
+_console.prototype.currentURL = location.href.split('/')[2];
 
 _console.prototype.addSafeURL = function(url)
 {
@@ -127,7 +127,7 @@ _console.prototype.log = function()
 	}
 	else
 	{
-		//this.saveHistory(arugments);
+		this.saveHistory(arugments);
 	}
 }
 _console.prototype.debug = function()
